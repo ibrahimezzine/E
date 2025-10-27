@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions des Exercices de Mathématiques</title>
+    <style>
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #0f3460;
+            --text-primary: #e6e6e6;
+            --text-secondary: #b8b8b8;
+            --accent: #e94560;
+            --border: #2d4059;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: var(--text-primary);
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: var(--accent);
+            margin-top: 40px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: var(--text-secondary);
+            margin-top: 25px;
+        }
+        
+        .exercise {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .solution {
+            background-color: rgba(15, 52, 96, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid var(--border);
+        }
+        
+        .step {
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+        
+        .important {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .math {
+            font-style: italic;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Cambria', 'Times New Roman', serif;
+        }
+        
+        .conclusion {
+            background-color: rgba(233, 69, 96, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .vector {
+            text-decoration: overline;
+            font-weight: bold;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Solutions des Exercices de Mathématiques</h1>
+    
+    <div class="exercise">
+        <h2>Exercice 1</h2>
+        <p>Soient <span class="math">n</span> un entier naturel non nul et <span class="math">a</span> et <span class="math">b</span> deux entiers tels que <span class="math">a = 2n - 1</span> et <span class="math">b = n + 3</span>.</p>
+        
+        <div class="question">
+            <h3>1. Montrer que 7 divise <span class="math">b + 3a</span> et divise <span class="math">2b - a</span></h3>
+            <div class="solution">
+                <div class="step">On a <span class="math">a = 2n - 1</span> et <span class="math">b = n + 3</span>.</div>
+                <div class="step">Calculons <span class="math">b + 3a</span> :</div>
+                <div class="step"><span class="math">b + 3a = (n + 3) + 3(2n - 1) = n + 3 + 6n - 3 = 7n</span></div>
+                <div class="step">Donc 7 divise <span class="math">b + 3a</span>.</div>
+                <div class="step">Calculons <span class="math">2b - a</span> :</div>
+                <div class="step"><span class="math">2b - a = 2(n + 3) - (2n - 1) = 2n + 6 - 2n + 1 = 7</span></div>
+                <div class="step">Donc 7 divise <span class="math">2b - a</span>.</div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <h3>2. Soit <span class="math">d = pgcd(a, b)</span></h3>
+            <div class="solution">
+                <div class="step">Montrer que <span class="math">d</span> divise <span class="math">2b</span> et divise <span class="math">a</span> :</div>
+                <div class="step">Puisque <span class="math">d = pgcd(a, b)</span>, <span class="math">d</span> divise <span class="math">a</span> et <span class="math">b</span>, donc <span class="math">d</span> divise toute combinaison linéaire de <span class="math">a</span> et <span class="math">b</span>.</div>
+                <div class="step">En particulier, <span class="math">d</span> divise <span class="math">2b</span> (car <span class="math">d</span> divise <span class="math">b</span>) et <span class="math">d</span> divise <span class="math">a</span>.</div>
+                
+                <div class="step">Déduire que <span class="math">d</span> divise 7 :</div>
+                <div class="step">D'après la question 1, <span class="math">d</span> divise <span class="math">b + 3a = 7n</span> et <span class="math">2b - a = 7</span>.</div>
+                <div class="step">Ainsi, <span class="math">d</span> divise <span class="math">pgcd(7n, 7) = 7</span> puisque 7 est premier.</div>
+                <div class="step">Donc <span class="math">d</span> divise 7.</div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <h3>3. Déterminer tous les entiers naturels <span class="math">n</span> tels que <span class="math">pgcd(a, b) = 7</span></h3>
+            <div class="solution">
+                <div class="step">D'après la question 2, <span class="math">d = pgcd(a, b)</span> divise 7, donc <span class="math">d</span> est soit 1, soit 7.</div>
+                <div class="step">Pour que <span class="math">d = 7</span>, il faut que 7 divise <span class="math">a</span> et <span class="math">b</span>.</div>
+                <div class="step"><span class="math">a = 2n - 1</span> divisible par 7 : <span class="math">2n - 1 = 7k</span> pour un entier <span class="math">k</span>, soit <span class="math">n = (7k + 1)/2</span>.</div>
+                <div class="step"><span class="math">n</span> entier implique que <span class="math">7k + 1</span> soit pair, donc <span class="math">k</span> impair. Soit <span class="math">k = 2m + 1</span>, alors <span class="math">n = 7m + 4</span>.</div>
+                <div class="step"><span class="math">b = n + 3</span> divisible par 7 : <span class="math">n + 3 = 7l</span> pour un entier <span class="math">l</span>, soit <span class="math">n = 7l - 3</span>.</div>
+                <div class="step">Les deux conditions sont simultanément vérifiées si <span class="math">7m + 4 = 7l - 3</span>, soit <span class="math">m = l - 1</span>, donc <span class="math">n = 7l - 3</span>.</div>
+                <div class="step">Ainsi, <span class="math">n = 7k + 4</span> pour <span class="math">k</span> entier naturel.</div>
+                <div class="conclusion">
+                    Les entiers naturels <span class="math">n</span> tels que <span class="math">pgcd(a, b) = 7</span> sont <span class="math">n = 7k + 4</span> avec <span class="math">k</span> entier naturel.
+                </div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <h3>4. Déterminer tous les entiers naturels <span class="math">n</span> pour que <span class="math">a</span> et <span class="math">b</span> soient premiers entre eux</h3>
+            <div class="solution">
+                <div class="step">Puisque <span class="math">pgcd(a, b)</span> divise 7, pour que <span class="math">pgcd(a, b) = 1</span>, il faut que 7 ne divise pas <span class="math">a</span> ou 7 ne divise pas <span class="math">b</span>.</div>
+                <div class="step">D'après la question 3, 7 divise <span class="math">a</span> et <span class="math">b</span> si et seulement si <span class="math">n = 7k + 4</span>.</div>
+                <div class="step">Donc, pour que <span class="math">pgcd(a, b) = 1</span>, il faut que <span class="math">n</span> soit différent de <span class="math">7k + 4</span> pour tout <span class="math">k</span> entier naturel.</div>
+                <div class="conclusion">
+                    Les entiers naturels <span class="math">n</span> pour que <span class="math">a</span> et <span class="math">b</span> soient premiers entre eux sont tous les entiers naturels <span class="math">n</span> sauf ceux de la forme <span class="math">n = 7k + 4</span>, avec <span class="math">k</span> entier naturel.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="exercise">
+        <h2>Exercice 3</h2>
+        <p>Soit <span class="math">ABCD</span> un parallélogramme et soit <span class="math">E</span> et <span class="math">F</span> deux points du plan tels que <span class="math">AF = b × AD</span> et <span class="math">AE = a × AB</span>, avec <span class="math">a</span> et <span class="math">b</span> deux nombres réels non nuls.</p>
+        
+        <div class="question">
+            <h3>1. Montrer que <span class="math">FG + EH = AC</span></h3>
+            <div class="solution">
+                <div class="step">On pose <span class="math">u = AB</span>, <span class="math">v = AD</span>, donc <span class="math">AC = u + v</span>.</div>
+                <div class="step"><span class="math">AE = a × u</span>, donc <span class="math">E = A + a × u</span>.</div>
+                <div class="step"><span class="math">AF = b × v</span>, donc <span class="math">F = A + b × v</span>.</div>
+                <div class="step"><span class="math">G</span> est sur la parallèle à <span class="math">(AD)</span> passant par <span class="math">E</span> et sur <span class="math">(CD)</span>, donc <span class="math">AG = AE + v = a × u + v</span>.</div>
+                <div class="step"><span class="math">H</span> est sur la parallèle à <span class="math">(AB)</span> passant par <span class="math">F</span> et sur <span class="math">(BC)</span>, donc <span class="math">AH = AB + BH = u + b × v</span>.</div>
+                <div class="step">Alors :</div>
+                <div class="step"><span class="math">FG = G - F = (a × u + v) - (b × v) = a × u + (1 - b) × v</span></div>
+                <div class="step"><span class="math">EH = H - E = (u + b × v) - (a × u) = (1 - a) × u + b × v</span></div>
+                <div class="step">Donc <span class="math">FG + EH = [a × u + (1 - b) × v] + [(1 - a) × u + b × v] = u + v = AC</span></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <h3>2. Montrer que si les droites <span class="math">(FG)</span> et <span class="math">(EH)</span> sont parallèles, alors elles sont parallèles à la droite <span class="math">(AC)</span></h3>
+            <div class="solution">
+                <div class="step">Montrer que <span class="math">DF = (1 - b) × DA</span> et <span class="math">DG = a × DC</span> :</div>
+                <div class="step"><span class="math">DF = F - D = (A + b × v) - (A + v) = (b - 1) × v</span></div>
+                <div class="step">Or <span class="math">DA = A - D = -v</span>, donc <span class="math">DF = (1 - b) × DA</span></div>
+                <div class="step"><span class="math">DG = G - D = (A + a × u + v) - (A + v) = a × u</span></div>
+                <div class="step">Or <span class="math">DC = u</span>, donc <span class="math">DG = a × DC</span></div>
+                
+                <div class="step">En déduire que si <span class="math">(FG)</span> est parallèle à <span class="math">(EH)</span> alors <span class="math">a + b = 1</span> :</div>
+                <div class="step"><span class="math">FG = a × u + (1 - b) × v</span>, <span class="math">EH = (1 - a) × u + b × v</span></div>
+                <div class="step">Si <span class="math">(FG)</span> et <span class="math">(EH)</span> sont parallèles, alors <span class="math">FG</span> et <span class="math">EH</span> sont colinéaires :</div>
+                <div class="step"><span class="math">a × u + (1 - b) × v = k × [(1 - a) × u + b × v]</span> pour un réel <span class="math">k</span></div>
+                <div class="step">Par indépendance de <span class="math">u</span> et <span class="math">v</span>,</div>
+                <div class="step"><span class="math">a = k(1 - a)</span> et <span class="math">1 - b = k × b</span></div>
+                <div class="step">En éliminant <span class="math">k</span>, <span class="math">a/(1 - a) = (1 - b)/b</span>, soit <span class="math">a × b = (1 - a)(1 - b) = 1 - a - b + a × b</span>, d'où <span class="math">a + b = 1</span></div>
+                <div class="step">Si <span class="math">a + b = 1</span>, alors <span class="math">FG = a × u + a × v = a × AC</span> et <span class="math">EH = (1 - a) × u + (1 - a) × v = (1 - a) × AC</span>, donc <span class="math">(FG)</span> et <span class="math">(EH)</span> sont parallèles à <span class="math">(AC)</span></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <h3>3. Montrer que si <span class="math">a + b = 1</span>, alors les droites <span class="math">(FG)</span> et <span class="math">(EH)</span> sont parallèles à la droite <span class="math">(AC)</span></h3>
+            <div class="solution">
+                <div class="step">Déjà démontré ci-dessus : <span class="math">FG = a × AC</span> et <span class="math">EH = (1 - a) × AC</span></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <h3>4. Montrer que si <span class="math">a + b = 1</span>, alors le point <span class="math">K</span> appartient à la droite <span class="math">(BD)</span></h3>
+            <div class="solution">
+                <div class="step"><span class="math">K</span> est l'intersection de <span class="math">(EG)</span> et <span class="math">(FH)</span></div>
+                <div class="step"><span class="math">(EG)</span> : passant par <span class="math">E = A + a × u</span>, de direction <span class="math">v</span>, donc <span class="math">M = A + a × u + t × v</span></div>
+                <div class="step"><span class="math">(FH)</span> : passant par <span class="math">F = A + b × v</span>, de direction <span class="math">u</span>, donc <span class="math">N = A + s × u + b × v</span></div>
+                <div class="step">À l'intersection <span class="math">K</span>, <span class="math">A + a × u + t × v = A + s × u + b × v</span>, donc <span class="math">a = s</span> et <span class="math">t = b</span></div>
+                <div class="step">Ainsi, <span class="math">K = A + a × u + b × v</span></div>
+                <div class="step">La droite <span class="math">(BD)</span> : <span class="math">B = A + u</span>, <span class="math">D = A + v</span>, donc <span class="math">P = A + (1 - u) × u + u × v</span> pour <span class="math">u</span> réel</div>
+                <div class="step">Si <span class="math">a + b = 1</span>, alors <span class="math">K = A + a × u + b × v = A + (1 - b) × u + b × v</span>, qui est de la forme <span class="math">P</span> avec <span class="math">u = b</span></div>
+                <div class="step">Donc <span class="math">K</span> appartient à <span class="math">(BD)</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
