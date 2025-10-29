@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Rôle de la Femme dans la Société - Comparaison IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #FF6B9D;
+            --accent: #00D4FF;
+            --dark: #121212;
+            --darker: #0A0A0A;
+            --light: #E0E0E0;
+            --card-bg: #1E1E1E;
+            --card-border: #333;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .ai-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .ai-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .ai-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .ai-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .ai-content {
+            padding: 25px;
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .ai-content h1, .ai-content h2, .ai-content h3 {
+            margin: 20px 0 10px 0;
+            color: var(--accent);
+        }
+
+        .ai-content h1 {
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+
+        .ai-content h2 {
+            font-size: 1.4rem;
+        }
+
+        .ai-content h3 {
+            font-size: 1.2rem;
+        }
+
+        .ai-content p {
+            margin-bottom: 15px;
+        }
+
+        .ai-content strong {
+            color: var(--secondary);
+        }
+
+        /* Specific AI Colors */
+        .copilot .ai-icon {
+            background: linear-gradient(135deg, #00d2ff, #3a47d5);
+        }
+
+        .claude .ai-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .gemini .ai-icon {
+            background: linear-gradient(135deg, #4285f4, #ea4335);
+        }
+
+        .grok .ai-icon {
+            background: linear-gradient(135deg, #000000, #434343);
+        }
+
+        .deepseek .ai-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .chatgpt .ai-icon {
+            background: linear-gradient(135deg, #10a37f, #1a7f64);
+        }
+
+        /* Scrollbar Styling */
+        .ai-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .ai-content::-webkit-scrollbar-track {
+            background: #2a2a2a;
+            border-radius: 10px;
+        }
+
+        .ai-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .ai-content::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .ai-content {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Le Rôle de la Femme dans la Société</h1>
+            <p class="subtitle">Comparaison des réponses des différentes IA sur un sujet de société contemporain</p>
+        </header>
+
+        <div class="ai-grid">
+            <!-- Copilot Card -->
+            <div class="ai-card copilot">
+                <div class="ai-header">
+                    <div class="ai-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="ai-name">Copilot</div>
+                </div>
+                <div class="ai-content">
+                    <p>Le rôle de la femme dans la société suscite depuis longtemps des débats qui mêlent traditions, économies et droits individuels. Si certains défendent l'idée que la femme doit se cantonner aux tâches domestiques, d'autres affirment au contraire qu'elle doit pouvoir participer pleinement au développement social, économique et politique. À mon sens, la limitation du rôle féminin aux seules tâches ménagères n'est ni souhaitable ni justifiable, et l'émancipation des femmes constitue un bénéfice pour l'ensemble de la communauté.</p>
+
+                    <p>D'abord, sur le plan éthique et des droits humains, priver les femmes d'accès complet à l'éducation, à l'emploi ou à la vie politique porte atteinte au principe d'égalité. La dignité humaine exige que chaque personne puisse choisir son parcours sans être enfermée par des prescriptions sociales ou culturelles. L'égalité des chances n'est pas une faveur : c'est une condition de justice. Empêcher une moitié de la population d'exprimer ses talents revient à accepter une forme de discrimination qui fragilise la cohésion sociale.</p>
+
+                    <p>Ensuite, l'argument économique plaide clairement en faveur de l'inclusion. L'intégration des femmes sur le marché du travail accroît le capital humain, stimule l'innovation et favorise la croissance. Les études économiques montrent que les pays qui exploitent pleinement les compétences féminines connaissent de meilleures performances en matière de productivité et de bien-être collectif. Au niveau familial, l'autonomie économique des mères améliore souvent la santé et l'éducation des enfants, contribuant ainsi au développement à long terme.</p>
+                </div>
+            </div>
+
+            <!-- Claude Card -->
+            <div class="ai-card claude">
+                <div class="ai-header">
+                    <div class="ai-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="ai-name">Claude</div>
+                </div>
+                <div class="ai-content">
+                    <h1>La contribution de la femme au développement de la société</h1>
+
+                    <h2>Introduction</h2>
+                    <p>Dans de nombreuses sociétés, le débat sur le rôle de la femme demeure d'actualité. Tandis que certains estiment que la femme doit limiter ses activités aux tâches ménagères, d'autres affirment qu'elle possède le droit et la capacité de contribuer pleinement au développement social, économique et culturel. Cette seconde position apparaît non seulement plus juste, mais également plus bénéfique pour l'ensemble de la société.</p>
+
+                    <h2>Développement</h2>
+
+                    <h3>Un impératif de justice et d'égalité</h3>
+                    <p>Premièrement, l'égalité entre hommes et femmes constitue un principe fondamental des droits humains. Limiter le rôle de la femme au foyer revient à nier ses droits fondamentaux et à restreindre sa liberté individuelle. Chaque être humain, indépendamment de son sexe, devrait avoir le droit de choisir son parcours de vie, de développer ses talents et de poursuivre ses ambitions. Refuser ce droit aux femmes représente une injustice flagrante qui contredit les valeurs d'égalité et de dignité humaine.</p>
+
+                    <h3>Un potentiel économique considérable</h3>
+                    <p>Deuxièmement, exclure les femmes du marché du travail et de la vie publique constitue un gaspillage de ressources humaines considérable. Les femmes représentent la moitié de la population mondiale et possèdent des compétences, des qualifications et des talents variés. De nombreuses études démontrent que l'intégration des femmes dans l'économie stimule la croissance, favorise l'innovation et améliore la productivité. Les pays qui ont investi dans l'éducation et l'autonomisation des femmes connaissent un développement plus rapide et plus durable.</p>
+                </div>
+            </div>
+
+            <!-- Gemini Card -->
+            <div class="ai-card gemini">
+                <div class="ai-header">
+                    <div class="ai-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="ai-name">Gemini</div>
+                </div>
+                <div class="ai-content">
+                    <h1>Au-delà du foyer : L'indispensable contribution des femmes au développement</h1>
+
+                    <p>Depuis des siècles, le débat sur le rôle de la femme oscille entre deux pôles : celui de gardienne du foyer, dédiée aux tâches domestiques et à l'éducation des enfants, et celui d'actrice à part entière de la vie publique et économique. Si la première vision repose sur une tradition ancienne, la seconde s'impose aujourd'hui non seulement comme une évidence morale, mais aussi comme une nécessité vitale pour le progrès de nos sociétés. Réduire la femme à la sphère privée est un anachronisme qui non seulement bafoue ses droits fondamentaux, mais qui prive également l'humanité de la moitié de ses talents. L'implication des femmes dans tous les secteurs de la société n'est pas une simple option ; c'est le moteur indispensable d'un développement juste et durable.</p>
+
+                    <p><strong>Premièrement, sur le plan économique, aucune société ne peut prétendre au progrès en se privant de 50% de son capital humain.</strong> Les faits sont têtus : les pays qui affichent les taux de participation féminine au marché du travail les plus élevés sont aussi, bien souvent, les plus prospères. Lorsque les femmes ont accès à l'éducation et à l'emploi, elles deviennent des agents économiques puissants. Elles innovent dans les sciences, créent des entreprises, et gèrent des institutions. De plus, de nombreuses études, notamment celles de la Banque Mondiale, démontrent que lorsque les femmes gagnent un revenu, elles ont tendance à l'investir prioritairement dans l'éducation et la santé de leurs enfants, brisant ainsi le cycle de la pauvreté. Se priver de l'apport des femmes n'est donc pas seulement une injustice, c'est une irrationalité économique.</p>
+                </div>
+            </div>
+
+            <!-- Grok Card -->
+            <div class="ai-card grok">
+                <div class="ai-header">
+                    <div class="ai-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="ai-name">Grok</div>
+                </div>
+                <div class="ai-content">
+                    <h1>La femme doit contribuer pleinement au développement de la société : une nécessité, pas un choix</h1>
+
+                    <p>Dans un monde où les défis — climatiques, économiques, sociaux — exigent l'intelligence collective, limiter la femme aux tâches ménagères n'est pas seulement injuste : c'est absurde. Son rôle ne saurait se réduire au foyer. Elle doit, au contraire, participer activement à la construction de la société, au même titre que l'homme. Cette thèse n'est pas une idéologie : elle est étayée par des faits historiques, économiques et sociaux irréfutables.</p>
+
+                    <p><strong>Premièrement, les preuves économiques sont accablantes.</strong><br>
+                    Selon la Banque mondiale (rapport 2023), combler l'écart de participation professionnelle entre hommes et femmes générerait <strong>160 000 milliards de dollars</strong> de richesse mondiale supplémentaire. Ce n'est pas une estimation théorique : c'est une perte réelle, mesurable, due à l'exclusion des femmes. Dans les pays où elles accèdent librement au marché du travail — comme la Suède ou le Rwanda —, le PIB par habitant est plus élevé, l'innovation plus forte, la corruption moindre. À l'inverse, les nations qui les confinent au foyer, comme l'Afghanistan post-2021, s'effondrent économiquement. Exclure la femme, c'est saboter la prospérité collective.</p>
+
+                    <p><strong>Deuxièmement, l'argument biologique est une imposture.</strong><br>
+                    On invoque la grossesse, l'allaitement, pour justifier un rôle domestique exclusif. Mais ces réalités physiologiques ne condamnent pas la femme à l'invisibilité publique. Les congés parentaux partagés (Islande, Norvège) prouvent que <strong>les pères peuvent et veulent</strong> s'occuper des enfants. Les tâches ménagères ne sont pas "naturellement féminines" : elles l'ont été <strong>par construction sociale</strong>, comme l'étaient autrefois les interdictions faites aux femmes de voter, d'étudier ou de posséder. Refuser cette évidence, c'est essentialiser la femme, comme on essentialisait jadis d'autres groupes humains à des rôles subalternes.</p>
+                </div>
+            </div>
+
+            <!-- DeepSeek Card -->
+            <div class="ai-card deepseek">
+                <div class="ai-header">
+                    <div class="ai-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="ai-name">DeepSeek</div>
+                </div>
+                <div class="ai-content">
+                    <h1>La Femme : Pilier du Foyer ou Actrice du Développement Sociétal ?</h1>
+
+                    <h2>Introduction</h2>
+                    <p>Depuis des siècles, la place de la femme dans la société fait l'objet de vifs débats. Une fracture persiste entre, d'une part, ceux qui voient en elle un moteur essentiel du progrès et, d'autre part, ceux qui estiment que sa sphère d'influence légitime se confine à l'espace domestique. Alors que certains brandissent l'argument de la tradition pour limiter son rôle aux tâches ménagères, d'autres, au nom de l'égalité et du progrès, plaident pour sa participation entière et active à tous les secteurs de la vie publique. Il est impératif de dépasser ce clivage archaïque pour reconnaître que l'épanouissement d'une société moderne repose nécessairement sur la pleine et entière contribution de toutes ses composantes, sans distinction de genre.</p>
+
+                    <h2>I. Les limites d'une vision restrictive et traditionnelle</h2>
+                    <p>Les partisans d'un rôle exclusivement domestique de la femme invoquent souvent la stabilité familiale, une prétendue "nature" féminine ou la préservation des traditions. Selon eux, la spécialisation des rôles — l'homme pourvoyeur et la femme gardienne du foyer — garantirait un ordre social harmonieux.</p>
+
+                    <p>Cependant, cette perspective est profondément réductrice et inadaptée au monde contemporain. Premièrement, elle nie l'intelligence, les ambitions et les compétences variées de la moitié de l'humanité. Confiner les femmes à la maison, c'est se priver volontairement d'un immense réservoir de talents, d'idées et d'innovations potentielles. Deuxièmement, cette vision perpétue une inégalité fondamentale en faisant de la charge domestique une obligation genrée, et non un choix ou une responsabilité partagée. Enfin, elle isole la femme et la rend économiquement dépendante, la privant d'autonomie et de reconnaissance sociale au-delà de la sphère privée.</p>
+                </div>
+            </div>
+
+            <!-- ChatGPT Card -->
+            <div class="ai-card chatgpt">
+                <div class="ai-header">
+                    <div class="ai-icon">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <div class="ai-name">ChatGPT</div>
+                </div>
+                <div class="ai-content">
+                    <h2>Sujet</h2>
+                    <p>Certains croient que la femme peut contribuer au développement de la société, tandis que d'autres pensent que son rôle doit se limiter aux tâches ménagères.</p>
+
+                    <h2>Texte argumentatif</h2>
+                    <p>De nos jours, la place de la femme dans la société reste un sujet de discussion. Certains estiment que la femme doit rester à la maison pour s'occuper de son foyer, alors que d'autres affirment qu'elle a un rôle essentiel à jouer dans le développement du pays. Pour ma part, je pense que <strong>la femme a parfaitement le droit et la capacité de participer activement à la vie sociale et économique</strong>.</p>
+
+                    <p>Tout d'abord, la femme possède les mêmes qualités intellectuelles et morales que l'homme. Elle peut étudier, travailler et créer. Dans plusieurs domaines, comme la médecine, l'enseignement, la politique ou la recherche, les femmes ont prouvé leur compétence et leur efficacité. Par exemple, de nombreuses femmes médecins sauvent des vies chaque jour, et des enseignantes forment les générations de demain.</p>
+
+                    <p>Ensuite, limiter la femme aux tâches ménagères serait une grande injustice. Les tâches du foyer sont importantes, mais elles ne doivent pas être son unique rôle. Une femme peut très bien concilier sa vie professionnelle et sa vie familiale si elle est soutenue et respectée. D'ailleurs, quand la femme travaille, elle contribue au revenu du ménage et au développement économique du pays.</p>
+
+                    <p>Enfin, une société qui reconnaît la valeur de la femme est une société moderne et équilibrée. L'éducation des filles et leur participation à la vie publique renforcent la démocratie et favorisent le progrès. Exclure la femme du développement, c'est priver la société de la moitié de son potentiel.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Comparaison des réponses des IA sur le rôle de la femme dans la société | Conçu avec soin</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.ai-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
