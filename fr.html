@@ -112,8 +112,14 @@
             align-items: center;
             justify-content: center;
             margin-right: 15px;
-            font-size: 1.5rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .ai-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .ai-name {
@@ -153,31 +159,6 @@
 
         .ai-content strong {
             color: var(--secondary);
-        }
-
-        /* Specific AI Colors */
-        .copilot .ai-icon {
-            background: linear-gradient(135deg, #00d2ff, #3a47d5);
-        }
-
-        .claude .ai-icon {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-        }
-
-        .gemini .ai-icon {
-            background: linear-gradient(135deg, #4285f4, #ea4335);
-        }
-
-        .grok .ai-icon {
-            background: linear-gradient(135deg, #000000, #434343);
-        }
-
-        .deepseek .ai-icon {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        .chatgpt .ai-icon {
-            background: linear-gradient(135deg, #10a37f, #1a7f64);
         }
 
         /* Scrollbar Styling */
@@ -233,10 +214,10 @@
 
         <div class="ai-grid">
             <!-- Copilot Card -->
-            <div class="ai-card copilot">
+            <div class="ai-card">
                 <div class="ai-header">
                     <div class="ai-icon">
-                        <i class="fas fa-robot"></i>
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-copilot-icon.png" alt="Copilot">
                     </div>
                     <div class="ai-name">Copilot</div>
                 </div>
@@ -250,10 +231,10 @@
             </div>
 
             <!-- Claude Card -->
-            <div class="ai-card claude">
+            <div class="ai-card">
                 <div class="ai-header">
                     <div class="ai-icon">
-                        <i class="fas fa-brain"></i>
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/claude-ai-icon.png" alt="Claude">
                     </div>
                     <div class="ai-name">Claude</div>
                 </div>
@@ -274,10 +255,10 @@
             </div>
 
             <!-- Gemini Card -->
-            <div class="ai-card gemini">
+            <div class="ai-card">
                 <div class="ai-header">
                     <div class="ai-icon">
-                        <i class="fas fa-gem"></i>
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.svg" alt="Gemini">
                     </div>
                     <div class="ai-name">Gemini</div>
                 </div>
@@ -291,10 +272,10 @@
             </div>
 
             <!-- Grok Card -->
-            <div class="ai-card grok">
+            <div class="ai-card">
                 <div class="ai-header">
                     <div class="ai-icon">
-                        <i class="fas fa-bolt"></i>
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/grok-icon.png" alt="Grok">
                     </div>
                     <div class="ai-name">Grok</div>
                 </div>
@@ -312,10 +293,10 @@
             </div>
 
             <!-- DeepSeek Card -->
-            <div class="ai-card deepseek">
+            <div class="ai-card">
                 <div class="ai-header">
                     <div class="ai-icon">
-                        <i class="fas fa-search"></i>
+                        <img src="https://images.seeklogo.com/logo-png/61/1/deepseek-ai-icon-logo-png_seeklogo-611473.png" alt="DeepSeek">
                     </div>
                     <div class="ai-name">DeepSeek</div>
                 </div>
@@ -333,10 +314,10 @@
             </div>
 
             <!-- ChatGPT Card -->
-            <div class="ai-card chatgpt">
+            <div class="ai-card">
                 <div class="ai-header">
                     <div class="ai-icon">
-                        <i class="fas fa-comment"></i>
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/chatgpt-icon.png" alt="ChatGPT">
                     </div>
                     <div class="ai-name">ChatGPT</div>
                 </div>
