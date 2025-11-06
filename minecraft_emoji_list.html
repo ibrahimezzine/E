@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Chat Emojis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4ecca3;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0px #0f3460;
+            line-height: 1.5;
+        }
+
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .emoji-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px solid #4ecca3;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .emoji-card:hover {
+            background: rgba(78, 204, 163, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 204, 163, 0.3);
+        }
+
+        .emoji-display {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .emoji-name {
+            font-size: 10px;
+            color: #e94560;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .copy-btn {
+            font-family: 'Press Start 2P', cursive;
+            background: #4ecca3;
+            color: #1a1a2e;
+            border: none;
+            padding: 8px 12px;
+            font-size: 8px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #45b893;
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copied {
+            background: #e94560 !important;
+            color: #fff !important;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid #4ecca3;
+            color: #fff;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .copy-all-btn {
+            font-family: 'Press Start 2P', cursive;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s ease;
+        }
+
+        .copy-all-btn:hover {
+            background: #d93651;
+            transform: scale(1.05);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4ecca3;
+            color: #1a1a2e;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minecraft Chat Emojis</h1>
+        
+        <input type="text" class="search-box" id="searchBox" placeholder="Search emojis...">
+        
+        <button class="copy-all-btn" onclick="copyAllEmojis()">Copy All Emojis</button>
+        
+        <div class="emoji-grid" id="emojiGrid"></div>
+    </div>
+
+    <div class="notification" id="notification">Copied!</div>
+
+    <script>
+        const emojis = [
+            { symbol: '☺', name: 'Smiling Face' },
+            { symbol: '☹', name: 'Frowning Face' },
+            { symbol: '☠', name: 'Skull and Crossbones' },
+            { symbol: '❣', name: 'Heart Exclamation' },
+            { symbol: '❤', name: 'Red Heart' },
+            { symbol: '✌', name: 'Victory Hand' },
+            { symbol: '☝', name: 'Index Pointing Up' },
+            { symbol: '✍', name: 'Writing Hand' },
+            { symbol: '♨', name: 'Hot Springs' },
+            { symbol: '✈', name: 'Airplane' },
+            { symbol: '⌛', name: 'Hourglass Done' },
+            { symbol: '⌚', name: 'Watch' },
+            { symbol: '☀', name: 'Sun' },
+            { symbol: '☁', name: 'Cloud' },
+            { symbol: '☂', name: 'Umbrella' },
+            { symbol: '❄', name: 'Snowflake' },
+            { symbol: '☃', name: 'Snowman' },
+            { symbol: '☄', name: 'Comet' },
+            { symbol: '♠', name: 'Spade Suit' },
+            { symbol: '♥', name: 'Heart Suit' },
+            { symbol: '♦', name: 'Diamond Suit' },
+            { symbol: '♣', name: 'Club Suit' },
+            { symbol: '♟', name: 'Chess Pawn' },
+            { symbol: '☎', name: 'Telephone' },
+            { symbol: '⌨', name: 'Keyboard' },
+            { symbol: '✉', name: 'Envelope' },
+            { symbol: '✏', name: 'Pencil' },
+            { symbol: '✒', name: 'Black Nib' },
+            { symbol: '✂', name: 'Scissors' },
+            { symbol: '☢', name: 'Radioactive' },
+            { symbol: '☣', name: 'Biohazard' },
+            { symbol: '⬆', name: 'Up Arrow' },
+            { symbol: '⬇', name: 'Down Arrow' },
+            { symbol: '➡', name: 'Right Arrow' },
+            { symbol: '⬅', name: 'Left Arrow' },
+            { symbol: '↗', name: 'Up-Right Arrow' },
+            { symbol: '↘', name: 'Down-Right Arrow' },
+            { symbol: '↙', name: 'Down-Left Arrow' },
+            { symbol: '↖', name: 'Up-Left Arrow' },
+            { symbol: '↕', name: 'Up-Down Arrow' },
+            { symbol: '↔', name: 'Left-Right Arrow' },
+            { symbol: '↩', name: 'Right Arrow Curving Left' },
+            { symbol: '↪', name: 'Left Arrow Curving Right' },
+            { symbol: '✡', name: 'Star of David' },
+            { symbol: '☸', name: 'Wheel of Dharma' },
+            { symbol: '☯', name: 'Yin Yang' },
+            { symbol: '✝', name: 'Latin Cross' },
+            { symbol: '☦', name: 'Orthodox Cross' },
+            { symbol: '☪', name: 'Star and Crescent' },
+            { symbol: '☮', name: 'Peace Symbol' },
+            { symbol: '♈', name: 'Aries' },
+            { symbol: '♉', name: 'Taurus' },
+            { symbol: '♊', name: 'Gemini' },
+            { symbol: '♋', name: 'Cancer' },
+            { symbol: '♌', name: 'Leo' },
+            { symbol: '♍', name: 'Virgo' },
+            { symbol: '♎', name: 'Libra' },
+            { symbol: '♏', name: 'Scorpio' },
+            { symbol: '♐', name: 'Sagittarius' },
+            { symbol: '♑', name: 'Capricorn' },
+            { symbol: '♒', name: 'Aquarius' },
+            { symbol: '♓', name: 'Pisces' },
+            { symbol: '▶', name: 'Play Button' },
+            { symbol: '◀', name: 'Reverse Button' },
+            { symbol: '♀', name: 'Female Sign' },
+            { symbol: '♂', name: 'Male Sign' },
+            { symbol: '✖', name: 'Multiply' },
+            { symbol: '‼', name: 'Double Exclamation Mark' },
+            { symbol: '〰', name: 'Wavy Dash' },
+            { symbol: '☑', name: 'Check Box with Check' },
+            { symbol: '✔', name: 'Check Mark' },
+            { symbol: '✳', name: 'Eight-Spoked Asterisk' },
+            { symbol: '✴', name: 'Eight-Pointed Star' },
+            { symbol: '❇', name: 'Sparkle' },
+            { symbol: '©', name: 'Copyright' },
+            { symbol: '®', name: 'Registered' },
+            { symbol: '™', name: 'Trade Mark' },
+            { symbol: 'Ⓜ', name: 'Circled M' },
+            { symbol: '㊗', name: 'Japanese Congratulations Button' },
+            { symbol: '㊙', name: 'Japanese Secret Button' },
+            { symbol: '▪', name: 'Black Small Square' },
+            { symbol: '▫', name: 'White Small Square' },
+            { symbol: '☷', name: 'Trigram for Earth' },
+            { symbol: '☵', name: 'Trigram for Water' },
+            { symbol: '☶', name: 'Trigram for Mountain' },
+            { symbol: '☋', name: 'Descending Node' },
+            { symbol: '*', name: 'Asterisk' },
+            { symbol: '☌', name: 'Conjunction' },
+            { symbol: '♜', name: 'Black Chess Rook' },
+            { symbol: '♕', name: 'White Chess Queen' },
+            { symbol: '♡', name: 'White Heart Suit' },
+            { symbol: '♬', name: 'Beamed Sixteenth Notes' },
+            { symbol: '☚', name: 'Black Left Pointing Index' },
+            { symbol: '♮', name: 'Music Natural Sign' },
+            { symbol: '♝', name: 'Black Chess Bishop' },
+            { symbol: '♯', name: 'Sharp' },
+            { symbol: '☴', name: 'Trigram for Wind' },
+            { symbol: '♭', name: 'Flat' },
+            { symbol: '☓', name: 'Saltire' },
+            { symbol: '☛', name: 'Black Right Pointing Index' },
+            { symbol: '☭', name: 'Hammer and Sickle' },
+            { symbol: '0', name: 'Digit Zero' },
+            { symbol: '♢', name: 'White Diamond Suit' },
+            { symbol: '3', name: 'Digit Three' },
+            { symbol: '✐', name: 'Upper Right Pencil' },
+            { symbol: '♖', name: 'White Chess Rook' },
+            { symbol: '☈', name: 'Thunderstorm' },
+            { symbol: '☒', name: 'Ballot Box with X' },
+            { symbol: '★', name: 'Black Star' },
+            { symbol: '♚', name: 'Black Chess King' },
+            { symbol: '♛', name: 'Black Chess Queen' },
+            { symbol: '✎', name: 'Lower Right Pencil' },
+            { symbol: '♪', name: 'Eighth Note' },
+            { symbol: '☰', name: 'Trigram for Heaven' },
+            { symbol: '☽', name: 'First Quarter Moon' },
+            { symbol: '☡', name: 'Caution Sign' },
+            { symbol: '☼', name: 'White Sun with Rays' },
+            { symbol: '♅', name: 'Uranus' },
+            { symbol: '☐', name: 'Ballot Box' },
+            { symbol: '☟', name: 'White Down Pointing Index' },
+            { symbol: '❦', name: 'Floral Heart' },
+            { symbol: '☊', name: 'Ascending Node' },
+            { symbol: '☍', name: 'Opposition' },
+            { symbol: '☬', name: 'Adi Shakti' },
+            { symbol: '7', name: 'Digit Seven' },
+            { symbol: '♧', name: 'White Club Suit' },
+            { symbol: '☫', name: 'Farsi Symbol' },
+            { symbol: '☱', name: 'Trigram for Lake' },
+            { symbol: '☾', name: 'Last Quarter Moon' },
+            { symbol: '☤', name: 'Caduceus' },
+            { symbol: '❧', name: 'Rotated Floral Heart Bullet' },
+            { symbol: '2', name: 'Digit Two' },
+            { symbol: '8', name: 'Digit Eight' },
+            { symbol: '♄', name: 'Saturn' },
+            { symbol: '♁', name: 'Earth' },
+            { symbol: '1', name: 'Digit One' },
+            { symbol: '♔', name: 'White Chess King' },
+            { symbol: '4', name: 'Digit Four' },
+            { symbol: '❥', name: 'Rotated Heavy Black Heart Bullet' },
+            { symbol: '☥', name: 'Ankh' },
+            { symbol: '☻', name: 'Black Smiling Face' },
+            { symbol: '5', name: 'Digit Five' },
+            { symbol: '♤', name: 'White Spade Suit' },
+            { symbol: '6', name: 'Digit Six' },
+            { symbol: '♞', name: 'Black Chess Knight' },
+            { symbol: '♆', name: 'Neptune' },
+            { symbol: '#', name: 'Hash Sign' },
+            { symbol: '♃', name: 'Jupiter' },
+            { symbol: '♩', name: 'Quarter Note' },
+            { symbol: '9', name: 'Digit Nine' },
+            { symbol: '☇', name: 'Lightning' },
+            { symbol: '☞', name: 'White Right Pointing Index' },
+            { symbol: '♫', name: 'Beamed Eighth Notes' },
+            { symbol: '☏', name: 'White Telephone' },
+            { symbol: '♘', name: 'White Chess Knight' },
+            { symbol: '☧', name: 'Chi Rho' },
+            { symbol: '☉', name: 'Sun' },
+            { symbol: '♇', name: 'Pluto' },
+            { symbol: '☩', name: 'Cross of Jerusalem' },
+            { symbol: '♙', name: 'White Chess Pawn' },
+            { symbol: '☜', name: 'White Left Pointing Index' },
+            { symbol: '☲', name: 'Trigram for Fire' },
+            { symbol: '☨', name: 'Cross of Lorraine' },
+            { symbol: '♗', name: 'White Chess Bishop' },
+            { symbol: '☳', name: 'Trigram for Thunder' }
+        ];
+
+        function renderEmojis(filteredEmojis = emojis) {
+            const grid = document.getElementById('emojiGrid');
+            grid.innerHTML = '';
+            
+            filteredEmojis.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'emoji-card';
+                card.innerHTML = `
+                    <div class="emoji-display">${emoji.symbol}</div>
+                    <div class="emoji-name">${emoji.name}</div>
+                    <button class="copy-btn" onclick="copyEmoji('${emoji.symbol}', ${index})">Copy</button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function copyEmoji(symbol, index) {
+            navigator.clipboard.writeText(symbol).then(() => {
+                showNotification('Copied: ' + symbol);
+                const buttons = document.querySelectorAll('.copy-btn');
+                buttons[index].textContent = 'Copied!';
+                buttons[index].classList.add('copied');
+                setTimeout(() => {
+                    buttons[index].textContent = 'Copy';
+                    buttons[index].classList.remove('copied');
+                }, 1500);
+            });
+        }
+
+        function copyAllEmojis() {
+            const allSymbols = emojis.map(e => e.symbol).join(' ');
+            navigator.clipboard.writeText(allSymbols).then(() => {
+                showNotification('All emojis copied!');
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = emojis.filter(emoji => 
+                emoji.name.toLowerCase().includes(searchTerm) ||
+                emoji.symbol.includes(searchTerm)
+            );
+            renderEmojis(filtered);
+        });
+
+        renderEmojis();
+    </script>
+</body>
+</html>
