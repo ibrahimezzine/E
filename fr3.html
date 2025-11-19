@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation : La Nouvelle Réaliste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0f0f0f 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            padding: 10px;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #121212 0%, #2c3e50 100%);
+            color: #fff;
+            text-align: center;
+            padding: 20px 15px;
+            border-bottom: 2px solid #444;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #4a9eff;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1em;
+            opacity: 0.8;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .welcome-message {
+            background: rgba(74, 158, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.95em;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            text-align: center;
+        }
+
+        .error-message {
+            background: rgba(255, 87, 87, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.95em;
+            border: 1px solid rgba(255, 87, 87, 0.3);
+            color: #ff5757;
+            text-align: center;
+        }
+
+        .presentateurs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .presentateur {
+            background: rgba(74, 158, 255, 0.2);
+            color: #4a9eff;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 1px solid rgba(74, 158, 255, 0.4);
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .presentateur.visiteur {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .feuille {
+            padding: 20px 15px;
+            border-bottom: 1px solid #333;
+            position: relative;
+            background: #1e1e1e;
+        }
+
+        .feuille:nth-child(even) {
+            background: #222;
+        }
+
+        .feuille:last-child {
+            border-bottom: none;
+        }
+
+        .person-indicator {
+            position: relative;
+            top: 0;
+            right: 0;
+            background: #4a6491;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            border: 1px solid #5a7491;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #4a9eff;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-left: 4px solid #4a9eff;
+            padding-left: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+
+        h3 {
+            color: #6bb1ff;
+            margin: 20px 0 12px 0;
+            font-size: 1.1em;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+
+        ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .exemple {
+            background: #2a2a2a;
+            border-left: 3px solid #4a9eff;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 0 6px 6px 0;
+            border: 1px solid #333;
+            font-size: 0.9em;
+        }
+
+        .exemple-title {
+            font-weight: bold;
+            color: #6bb1ff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .exemple-maupassant {
+            background: rgba(74, 158, 255, 0.1);
+            border-left: 3px solid #ffc107;
+        }
+
+        .realiste-section {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2a3a4a 100%);
+            border: 2px solid #4a9eff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .realiste-title {
+            color: #4a9eff;
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #121212;
+            color: #ccc;
+            font-style: italic;
+            border-top: 1px solid #333;
+            font-size: 0.9em;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .characteristic-card {
+            background: #2a2a2a;
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border-top: 3px solid #4a9eff;
+            border: 1px solid #333;
+        }
+
+        .membre-actif {
+            border: 2px solid #ffc107;
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+        }
+
+        .maupassant-highlight {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        /* Styles pour les très petits écrans */
+        @media (max-width: 360px) {
+            body {
+                font-size: 14px;
+                padding: 5px;
+            }
+            
+            h1 {
+                font-size: 1.6em;
+            }
+            
+            .feuille {
+                padding: 15px 10px;
+            }
+            
+            .presentateur {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* Styles pour les écrans plus larges (optionnel) */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 700px;
+            }
+            
+            .presentateurs {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .characteristics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>La Nouvelle : Un concentré d'histoires</h1>
+            <div class="subtitle">Présentation des types de nouvelles et focus sur la nouvelle réaliste</div>
+            
+            <div id="messageContainer">
+                <!-- Le message de bienvenue ou d'erreur sera inséré ici -->
+            </div>
+            
+            <div class="presentateurs" id="presentateursList">
+                <!-- Les présentateurs seront ajoutés dynamiquement -->
+            </div>
+        </header>
+
+        <!-- Feuille de Soulayman -->
+        <div class="feuille" id="soulayman">
+            <div class="person-indicator">Soulayman</div>
+            <h2>Introduction - Qu'est-ce qu'une nouvelle ?</h2>
+            <p><strong>Bonjour à tous !</strong> Aujourd'hui, nous allons vous parler d'un genre littéraire à la fois court et puissant : <strong>la nouvelle</strong>.</p>
+            <p>Imaginez un roman comme un long métrage au cinéma, avec plusieurs intrigues et personnages. La nouvelle, elle, c'est plutôt une <strong>courte séquence, un instantané</strong> qui capture l'essence d'une situation ou d'une émotion.</p>
+            
+            <h3>Ses caractéristiques principales :</h3>
+            <div class="characteristics-grid">
+                <div class="characteristic-card">
+                    <strong>La brièveté</strong><br>
+                    Elle se lit souvent d'une traite.
+                </div>
+                <div class="characteristic-card">
+                    <strong>L'unité d'action</strong><br>
+                    L'histoire est centrée sur un seul événement principal.
+                </div>
+                <div class="characteristic-card">
+                    <strong>Peu de personnages</strong><br>
+                    Généralement, un ou deux personnages sont au centre.
+                </div>
+                <div class="characteristic-card">
+                    <strong>Une chute surprenante</strong><br>
+                    La fin donne tout son sens à l'histoire.
+                </div>
+            </div>
+            
+            <p>Mais il n'existe pas une, mais <strong>plusieurs types de nouvelles</strong>. C'est ce que nos camarades vont vous présenter.</p>
+        </div>
+
+        <!-- Feuille d'Imran -->
+        <div class="feuille" id="imran">
+            <div class="person-indicator">Imran</div>
+            <h2>Les Différents Types de Nouvelles (A)</h2>
+            <p>Nous allons faire un tour d'horizon des principaux genres de nouvelles.</p>
+            
+            <h3>1. La Nouvelle Fantastique</h3>
+            <p>C'est le règne du doute et de l'inexpliqué. Un événement étrange survient dans un monde réaliste. Le personnage et le lecteur se demandent : "Est-ce une hallucination ? Ou un phénomène surnaturel ?". La force de ce genre, c'est de maintenir l'incertitude.</p>
+            <div class="exemple exemple-maupassant">
+                <span class="exemple-title">Exemple de Maupassant :</span>
+                <em>Le Horla</em> - Un homme est progressivement envahi par une présence invisible qui le pousse à la folie.
+            </div>
+            
+            <h3>2. La Nouvelle Policière</h3>
+            <p>Son but est de résoudre une énigme, souvent un meurtre. Elle met en scène un détective, des indices et un dénouement où le coupable est démasqué.</p>
+            <div class="exemple exemple-maupassant">
+                <span class="exemple-title">Exemple de Maupassant :</span>
+                <em>Petit soldat</em> - Une intrigue autour d'un meurtre et d'une enquête dans un cadre militaire.
+            </div>
+            
+            <h3>3. La Nouvelle de Moeurs</h3>
+            <p>Elle décrit les coutumes, les comportements et la vie quotidienne d'une société ou d'un milieu particulier.</p>
+            <div class="exemple exemple-maupassant">
+                <span class="exemple-title">Exemple de Maupassant :</span>
+                <em>La Maison Tellier</em> - La vie d'une maison close en province et ses clientèles.
+            </div>
+        </div>
+
+        <!-- Feuille d'Ibrahim -->
+        <div class="feuille" id="ibrahim">
+            <div class="person-indicator">Ibrahim</div>
+            <h2>Les Différents Types de Nouvelles (B)</h2>
+            <p>Pour continuer sur les différents types :</p>
+            
+            <h3>4. La Nouvelle d'Humour / Satirique</h3>
+            <p>Son objectif est de faire rire en se moquant des défauts des personnes ou de la société. Elle utilise l'exagération et l'ironie.</p>
+            <div class="exemple exemple-maupassant">
+                <span class="exemple-title">Exemple de Maupassant :</span>
+                <em>Mademoiselle Fifi</em> - Une satire mordante de l'occupation prussienne et de la bourgeoisie française.
+            </div>
+            
+            <h3>5. La Nouvelle à Chute</h3>
+            <p>C'est la forme la plus classique. Toute l'histoire est construite pour préparer une fin surprenante, un rebondissement final qui change complètement notre compréhension de l'histoire.</p>
+            <div class="exemple exemple-maupassant">
+                <span class="exemple-title">Exemple de Maupassant :</span>
+                <em>La Parure</em> - La célèbre révélation finale sur le collier emprunté qui ruine la vie d'un couple.
+            </div>
+            
+            <h3>6. La Nouvelle Psychologique</h3>
+            <p>Elle explore les profondeurs de l'âme humaine, les motivations cachées et les conflits intérieurs des personnages.</p>
+            <div class="exemple exemple-maupassant">
+                <span class="exemple-title">Exemple de Maupassant :</span>
+                <em>Le Champ d'oliviers</em> - L'étude d'un prêtre tourmenté par ses désirs charnels.
+            </div>
+        </div>
+
+        <!-- Feuille de Yasser -->
+        <div class="feuille" id="yasser">
+            <div class="person-indicator">Yasser</div>
+            <div class="realiste-section">
+                <h2 class="realiste-title">La Nouvelle Réaliste</h2>
+                <p>Et maintenant, passons au cœur de notre sujet : <strong>la nouvelle réaliste</strong>.</p>
+                
+                <h3>Définition :</h3>
+                <p>La nouvelle réaliste cherche à <strong>peindre la réalité</strong> de son époque de manière objective et précise. Les auteurs s'inspirent de la vie quotidienne pour créer des histoires qui pourraient être vraies.</p>
+                
+                <h3>Ses caractéristiques :</h3>
+                <ul>
+                    <li><strong>Un cadre spatio-temporel réaliste</strong> : L'action se déroule dans des lieux et une époque reconnaissables (souvent le 19ème siècle en France).</li>
+                    <li><strong>Des personnages ordinaires</strong> : Ce sont des gens du commun, issus de la bourgeoisie, de la paysannerie, ou du petit peuple.</li>
+                    <li><strong>Une intrigue vraisemblable</strong> : L'histoire est crédible, elle pourrait arriver à n'importe qui.</li>
+                    <li><strong>Un style précis et détaillé</strong> : L'auteur décrit avec minutie les lieux, les physionomies et les objets pour ancrer l'histoire dans le réel.</li>
+                    <li><strong>Une critique sociale</strong> : Souvent, derrière l'anecdote, l'auteur critique les injustices sociales, l'avidité de la bourgeoisie, ou les conditions de vie difficiles.</li>
+                </ul>
+                
+                <h3>Guy de Maupassant, maître de la nouvelle réaliste</h3>
+                <p>Le maître incontesté de la nouvelle réaliste française est <span class="maupassant-highlight">Guy de Maupassant</span>, avec des recueils comme <em>Les Contes de la Bécasse</em> ou <em>Le Horla</em> (qui bascule dans le fantastique).</p>
+                
+                <h3>Exemples concrets de Maupassant :</h3>
+                <div class="exemple exemple-maupassant">
+                    <span class="exemple-title">La Ficelle</span>
+                    <p>Dans un marché normand, maître Hauchecorne ramasse un bout de ficelle. Accusé d'avoir volé un portefeuille, il ne pourra jamais prouver son innocence, montrant comment un petit fait peut détruire une réputation.</p>
+                </div>
+                
+                <div class="exemple exemple-maupassant">
+                    <span class="exemple-title">Boule de Suif</span>
+                    <p>Pendant la guerre franco-prussienne, une prostituée accepte de coucher avec un officier prussien pour sauver ses compagnons de voyage, qui la mépriseront ensuite. Une critique féroce de l'hypocrisie bourgeoise.</p>
+                </div>
+                
+                <div class="exemple exemple-maupassant">
+                    <span class="exemple-title">Aux champs</span>
+                    <p>Deux familles paysannes pauvres sont confrontées à la proposition d'une riche bourgeoise d'adopter un de leurs enfants. Cette histoire simple et touchante est un parfait exemple de réalisme et de critique sociale.</p>
+                </div>
+                
+                <div class="exemple exemple-maupassant">
+                    <span class="exemple-title">Deux amis</span>
+                    <p>Pendant le siège de Paris, deux amis partent pêcher et sont capturés par les Prussiens. Leur exécution montre l'absurdité de la guerre.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feuille de conclusion -->
+        <div class="feuille" id="conclusion">
+            <div class="person-indicator">Toute l'équipe</div>
+            <h2>Conclusion</h2>
+            <p><strong>Pour résumer :</strong></p>
+            <p>La nouvelle est un genre riche et diversifié. Qu'elle soit <strong>fantastique, policière, de moeurs, humoristique ou réaliste</strong>, elle possède le même pouvoir : nous captiver en peu de pages grâce à une histoire concentrée et une chute marquante.</p>
+            <p>La <strong>nouvelle réaliste</strong>, en particulier, nous offre un témoignage précieux sur la société et la psychologie humaine de son temps.</p>
+            <p><span class="maupassant-highlight">Guy de Maupassant</span>, avec son regard acéré et son style précis, reste le maître incontesté de ce genre.</p>
+            <div class="exemple">
+                <p><strong>Pour finir, nous allons vous lire un extrait d'une nouvelle réaliste de Maupassant pour en illustrer l'atmosphère et le style.</strong></p>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-style: italic;">Merci de votre attention !</p>
+        </div>
+
+        <footer>
+            Présentation créée par Soulayman, Imran, Ibrahim et Yasser
+        </footer>
+    </div>
+
+    <script>
+        // Liste des membres de l'équipe
+        const membresEquipe = ['soulayman', 'imran', 'ibrahim', 'yasser'];
+        
+        // Vérifier si le nom est déjà stocké
+        let userName = localStorage.getItem('userName');
+        
+        if (!userName) {
+            // Demander le nom si ce n'est pas la première visite
+            userName = prompt("Bonjour ! Quel est votre prénom ?");
+            if (userName) {
+                localStorage.setItem('userName', userName);
+            } else {
+                userName = "Visiteur";
+            }
+        }
+        
+        // Afficher le message approprié
+        const messageContainer = document.getElementById('messageContainer');
+        const nomNormalise = userName.toLowerCase().trim();
+        
+        if (membresEquipe.includes(nomNormalise)) {
+            // L'utilisateur est un membre de l'équipe
+            messageContainer.innerHTML = `<div class="welcome-message">Bienvenue ${userName} ! Nous sommes ravis de te voir dans l'équipe.</div>`;
+            
+            // Mettre en évidence la section du membre
+            const sectionMembre = document.getElementById(nomNormalise);
+            if (sectionMembre) {
+                sectionMembre.classList.add('membre-actif');
+            }
+        } else {
+            // L'utilisateur n'est pas un membre de l'équipe
+            messageContainer.innerHTML = `<div class="error-message">Bonjour ${userName} ! Vous n'êtes pas membre de l'équipe, mais vous êtes le bienvenue.</div>`;
+        }
+        
+        // Afficher la liste des présentateurs avec le visiteur en premier
+        const presentateursList = document.getElementById('presentateursList');
+        const presentateurs = [
+            { nom: userName, isVisiteur: !membresEquipe.includes(nomNormalise) },
+            { nom: "Soulayman", isVisiteur: false }
